@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/@millicast/sdk/dist/millicast.umd.min.js"></script>
+<script src="../assets/moment-with-locales.js"></script>
+<script src="../assets/jquery-3.6.4.js"></script>
+<script src="../lib/markup_functions.js"></script>
+<script src="../scripts/reportpage.js"></script>
+<script src="../scripts/mainpage.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<link href="../styles/index.css" rel="stylesheet"></link>
+<title>BioAi</title>
+<script type="text/javascript">
+    var base_url = window.location.origin;
+    var api_url = `${base_url}`;
+    var current_cube_id = 1;
+    var report_data = "";
+    var cube_data = "";
+
+    $(document).ready(function(){
+        const setup = async function(){
+            $('#display').hide();
+            $("#header").hide();
+            ChangeDisplayPage("#loadpage");
+        
+            ResetData(function(){
+                ChangeDisplayPage("#mainpage");
+            });
+
+            $("#header_redirect").on("click", function(event){
+                ChangeDisplayPage("#mainpage");
+            });
+
+            $("#cube-select").on("change", function(){
+                current_cube_id = this.value;
+                ResetData(function(){
+                    ChangeDisplayPage("#mainpage");
+                });
+            });
+        }
+
+        const loop = function(){
+            ResetReportData(function(report_data){
+                ResetMainPageDatafields(cube_data, report_data);
+            });
+        }
+
+        Main(5000, setup, loop);
+    });
+
+    async function Main(delay, setup, callback) {
+        await setup();
+        setInterval(()=> {
+            callback();
+        }, delay)
+    }
+
+    function ResetCubeData(callback){
+        $.get(`${api_url}/cube`, {"role": "user", "cube_id": current_cube_id}, function(data){
+            let new_cube_data = JSON.parse(data);
+            cube_data = new_cube_data;
+            callback(cube_data);
+        });
+    }
+
+    function ResetReportData(callback){
+        $.get(`${api_url}/report`, {"role": "user", "mode": "desc", "count": 10, "cube_id": current_cube_id}, function(data){
+            let new_report_data = JSON.parse(data);
+            report_data = new_report_data;
+            callback(report_data);
+        });
+    }
+
+    function ResetData(callback){
+        ResetCubeData(function(){
+            ResetReportData(function(){
+                callback();
+            })
+        })
+    }
+
+    function ResetLocalData(callback){
+        $.get(`${api_url}/cube`, {"role": "user", "cube_id": current_cube_id}, function(data){
+            let new_cube_data = JSON.parse(data);
+
+            if (localStorage.getItem("cube_data") === null ){
+                localStorage.setItem("cube_data", JSON.stringify(new_cube_data));
+            }
+
+            cube_data = JSON.parse(localStorage.getItem("cube_data"));
+
+            if (moment(new_cube_data["last_update_datetime"]).isAfter(cube_data["last_update_datetime"])){
+                localStorage.setItem("cube_data", JSON.stringify(new_cube_data));
+
+                console.log("changed");
+            }
+
+            if (localStorage.getItem("report_data") === null || moment(new_cube_data["last_report_datetime"]).isAfter(cube_data["last_report_datetime"])){
+                $.get(`${api_url}/report`, {"role": "user", "mode": "desc", "count": 10, "cube_id": current_cube_id}, function(data){
+                    let new_report_data = JSON.parse(data);
+                    localStorage.setItem("report_data", JSON.stringify(new_report_data));
+
+                    report_data = new_report_data;
+                    cube_data = new_cube_data;
+
+                    callback(cube_data, report_data);
+                });
+            }
+            else {
+                report_data = JSON.parse(localStorage.getItem("report_data"));
+                cube_data = new_cube_data;
+
+                callback(cube_data, report_data);
+            }
+        });
+    }
+
+    function BindElements(){
+        $(".redirect").on("click", function(event) {
+            let href = $(this).attr('href');
+            ChangeDisplayPage(href);
+        });
+    }
+
+    function ChangeDisplayPage(href){
+        $('html, body').animate({ scrollTop: 0 }, 500);
+        $('#display').fadeOut(400, function(){
+            switch(href){
+                case "#mainpage":
+                    $("#display").load("mainpage.html", function(){
+                        $("#header").show();
+                        InitializeMainPage(cube_data, report_data);
+                        BindElements();
+                    });
+                    break;
+                case "#reportpage":
+                    $("#display").load("reportpage.html", function(){
+                        $("#header").show();
+                        InitializeReportPage(report_data);
+                        BindElements();
+                    });
+                    break;
+                case "#loadpage":
+                    $("#display").load("loadpage.html", function(){
+                        $("#header").hide();
+                    });
+                    break;
+            }
+            $('#display').fadeIn(400);
+        });
+    }
+
+    function UpdateCubeStates(column_name, column_value){
+        $.ajax({
+            url: `${api_url}/cube?role=user&cube_id=${current_cube_id}&column_name=${column_name}&column_value=${column_value}`, 
+            type: "PATCH",
+            cache: false,
+            success: function(data){
+                ResetCubeData(function(cube_data){
+                    ResetMainPageDatafields(cube_data, report_data);
+                });
+            },
+            error: function(xhr){
+                console.log('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+            }
+        })
+    }
+</script>
+</head>
+<body>
+    <header class="header row-cols-1" id="header">
+        <div class="container justify-content-evenly align-content-center">
+            <div class="row">
+                <div class="header__logo col">
+                    <a href="#mainpage" id="header_redirect"><img src="../img/BioAi.svg" alt="BioAI"></a>
+                    <p class="header__logo-text">BioAI</p>
+                </div>
+                <select class="form-select align align-self-center" id="cube-select" style="max-width: 200px; max-height: 50px;">
+                    <option value="1" selected>1: Хояй</option>
+                    <option value="2">2: Зефирантес</option>
+                </select>
+            </div>
+        </div>
+    </header>
+    <div id="display"></div>
+</body>
+</html>

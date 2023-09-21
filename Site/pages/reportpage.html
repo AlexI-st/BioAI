@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/mainpage.css">
+</head>
+
+<body>
+    <section class="plants container">
+        <div class="plant__first">
+            <p class="plant__first-text text" id="name_datafield">Plant</p>
+        </div>
+        <div class="plant__second">
+            <p class="plant__second-text text" id="description_datafield">
+                Lorem?
+            </p>
+        </div>
+    </section>
+    <main class="main container">
+            <div class="data__left">
+                <h1 class="data__left-title">Данные о растении:</h1>
+                <p class="temperature text-second" id="temperature_datafield">Температура: 26.7 °C</p>
+                <p class="air-wet text-second" id="humidity_air_datafield">Влажность воздуха: 56%</p>
+                <p class="dirt-wet text-second" id="moisture_soil_datafield">Влажность почвы: 45%</p>
+                <p class="light-percent text-second" id="light_status_datafield">Процент внешнего освещения: 45%</p>
+                <p class="hydrogen-indicator text-second" id="ph_datafield">pH: 7.1</p>
+                <p class="last-watering text-second" id="last_watering_datetime_datafield">Последний полив: 2 часа назад</p>
+                <p class="ventilation text-second" id="cooler_status_datafield">Вентиляция: включена</p>
+                <p class="planted text-second" id="planting_datetime_datafield">Посажено: 4 дня назад</p>
+            </div>
+        <div class="main__items">
+            <div class="main__image__item-one">
+                <img src="../img/Frame 3.png" alt="">
+            </div>
+            <div class="main__image__item-two">
+                <img src="../img/image 3.png" alt="">
+            </div>
+            <div class="main__image__item-three">
+                <img src="../img/Frame 5.png" alt="">
+            </div>
+        </div>
+        <div id="state_overlay_container">
+            
+        </div>
+        <div class="main__items-btns">
+            <div class="main__items-btns-first">
+                <a class="action_link redirect" href="#reportpage">
+                    <p class="state__log-text">Журнал состояний</p>
+                </a>
+            </div>
+            <div class="main__items-btns-second">
+                <p class="state__log-text">Статистика</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="overlays">
+        <div class="main__items-interaction" id="state_overlay_default">
+            <div class="interaction__first first">
+                <a href="#light" class="action_link overlay_change_btn"><img src="../img/raphael_lampOn-01 1.png" alt=""></a>
+            </div>
+            <div class="interaction__second second">
+                <a href="#water" class="action_link overlay_change_btn"><img src="../img/mdi_water-plus.png" alt=""></a>
+            </div>
+            <div class="interaction__third third">
+                <a href="#cooler" class="action_link overlay_change_btn"><img src="../img/mdi_wind-power-outline.png" alt=""></a>
+            </div>
+            <div class="interaction__fourth fourth">
+                <a href="#temperature" class="action_link overlay_change_btn"><img src="../img/carbon_temperature.png" alt=""></a>
+            </div>
+        </div>
+        <div class="overlay state_overlay" id="state_overlay_light">
+            <h1 class="overlay_title">Освещение</h1>
+            <p class="overlay_value" id="overlay_light_status_datafield">45%</p>
+            <div class="overlay_status_change_btn_container">
+                <a href="#+" class="action_link overlay_status_change_btn light_status_change_btn">
+                    <p class="overlay_status_change_btn_text">+</p>
+                </a>
+                <a href="#-" class="action_link overlay_status_change_btn light_status_change_btn">
+                    <p class="overlay_status_change_btn_text">-</p>
+                </a>
+            </div>
+            <a href="#light_status" class="action_link overlay_change_btn status_update_btn overlay_action_btn overlay_action_btn_apply">
+                <p class="overlay_action_btn_text">Задать</p>
+            </a>
+            <a href="#default" class="action_link overlay_change_btn overlay_action_btn overlay_action_btn_cancel">
+                <p class="overlay_action_btn_text">Отменить</p>
+            </a>
+        </div>
+        <div class="overlay state_overlay" id="state_overlay_temperature">
+            <h1 class="overlay_title">Температура</h1>
+            <p class="overlay_value" id="overlay_temperature_datafield">26.7 °C</p>
+            <div class="overlay_status_change_btn_container">
+                <a href="#+" class="action_link overlay_status_change_btn temperature_status_change_btn">
+                    <p class="overlay_status_change_btn_text">+</p>
+                </a>
+                <a href="#-" class="action_link overlay_status_change_btn temperature_status_change_btn">
+                    <p class="overlay_status_change_btn_text">-</p>
+                </a>
+            </div>
+            <a href="#temperature_status" class="overlay_change_btn status_update_btn overlay_action_btn overlay_action_btn_apply">
+                <p class="overlay_action_btn_text">Задать</p>
+            </a>
+            <a href="#default" class="action_link overlay_change_btn overlay_action_btn overlay_action_btn_cancel">
+                <p class="overlay_action_btn_text">Отменить</p>
+            </a>
+        </div>
+        <div class="overlay state_overlay" id="state_overlay_water">
+            <h1 class="overlay_title">Полив</h1>
+            <form class="overlay_form_value">
+                <input type="number" id="overlay_water_volume_datafield">
+            </form>
+            <a href="#water_status" class="action_link overlay_change_btn status_update_btn overlay_action_btn overlay_action_btn_apply">
+                <p class="overlay_action_btn_text">Полить</p>
+            </a>
+            <a href="#default" class="action_link overlay_change_btn overlay_action_btn overlay_action_btn_cancel">
+                <p class="overlay_action_btn_text">Отменить</p>
+            </a>
+        </div>
+        <div class="overlay state_overlay" id="state_overlay_cooler">
+            <h1 class="overlay_title">Вентиляция</h1>
+            <p class="overlay_value" id="overlay_cooler_status_datafield">10%</p>
+            <div class="overlay_status_change_btn_container">
+                <a href="#+" class="action_link overlay_status_change_btn cooler_status_change_btn">
+                    <p class="overlay_status_change_btn_text">+</p>
+                </a>
+                <a href="#-" class="action_link overlay_status_change_btn cooler_status_change_btn">
+                    <p class="overlay_status_change_btn_text">-</p>
+                </a>
+            </div>
+            <a href="#cooler_status" class="overlay_change_btn status_update_btn overlay_action_btn overlay_action_btn_apply">
+                <p class="overlay_action_btn_text">Задать</p>
+            </a>
+            <a href="#default" class="action_link overlay_change_btn overlay_action_btn overlay_action_btn_cancel">
+                <p class="overlay_action_btn_text">Отменить</p>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

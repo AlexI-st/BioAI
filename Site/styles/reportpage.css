@@ -1,0 +1,100 @@
+@import 'fonts.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.header {
+    background: #1D3A21;
+    padding: 20px 10px 20px 10px;
+}
+
+.header__logo {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px
+}
+
+.header__logo-text {
+    padding-top: 20px;
+    color: #FFF;
+    text-align: center;
+    font-size: 36px;
+    font-family: Inter;
+}
+
+.state {
+    padding: 30px 0 30px 0;
+}
+
+.state__log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #8CCCBE;
+    border-radius: 10px;
+    height: 70px;
+}
+
+.state__log-text {
+    color: #1D3A21;
+    font-size: 40px;
+    font-family: Inter;
+}
+
+.main {
+    border-radius: 10px;
+    background: #1D3A21;
+    padding: 30px 0 30px 0;
+}
+
+.main__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main__card {
+    background: #8CCCBE;
+    border-radius: 10px;
+    max-width: 1162px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.main__card-title {
+    color: #1D3A21;
+    text-align: center;
+    font-size: 40px;
+    font-family: Inter;
+    margin: 5px;
+}
+
+.main__card-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 5px;
+}
+
+.text {
+    color: #1D3A21;
+    text-align: center;
+    font-size: 24px;
+    font-family: Inter;
+    max-width: 195px;
+    width: 100%;
+    margin-bottom: 5px;
+}

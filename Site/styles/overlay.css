@@ -1,0 +1,139 @@
+.overlays {
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: -500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    display: none;
+}
+
+#state_overlay_light {
+    position: absolute;
+    top: 0px;
+    left: 930px;
+}
+#state_overlay_temperature {
+    position: absolute;
+    top: 0px;
+    left: 930px;
+}
+#state_overlay_water{
+    position: absolute;
+    top: 0px;
+    left: 930px;
+}
+#state_overlay_cooler{
+    position: absolute;
+    top: 0px;
+    left: 930px;
+}
+
+.overlay {
+    border-radius: 10px;
+    background: #4B4E6D;
+    width: 453px;
+    height: 503px;
+}
+
+.overlay_title{
+    margin-top: 30px;
+
+    color: #FFF;
+    text-align: center;
+    font-size: 48px;
+    font-family: Inter;
+}
+
+.overlay_value{
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    color: #FFF;
+    text-align: center;
+    font-size: 60px;
+    font-family: Inter;
+}
+
+.overlay_status_change_btn_container{
+    width: 200px;
+    height: 70px;
+
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.overlay_status_change_btn{
+    width: 80px;
+    height: 70px;
+
+    border-radius: 10px;
+    background: #8CCCBE;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay_status_change_btn_text{
+    color: #FFF;
+    text-align: center;
+    font-size: 70px;
+    font-family: Inter;
+}
+
+.overlay_action_btn {
+    max-width: 200px;
+    max-height: 70px;
+
+    margin: 0 auto;
+    margin-top: 10px;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay_action_btn_apply{
+    background: #8CCCBE;
+}
+
+.overlay_action_btn_cancel{
+    background: #845050;
+}
+
+.overlay_action_btn_text {
+    color: #FFF;
+    font-size: 34px;
+    font-family: Inter;
+}
+
+.overlay_form_value{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.overlay_form_value input{
+    width: 200px;
+    height: 140px;
+
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background: #FFF;
+    font-size: 54px;
+    text-align: center;
+}
