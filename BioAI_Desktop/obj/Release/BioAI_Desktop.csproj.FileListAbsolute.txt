@@ -1,0 +1,16 @@
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\bin\Release\BioAI_Desktop.exe.config
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\bin\Release\BioAI_Desktop.exe
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\bin\Release\BioAI_Desktop.pdb
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\MainWindow.g.cs
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\App.g.cs
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop_MarkupCompile.cache
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop_MarkupCompile.lref
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\MainWindow.baml
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop.g.resources
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop.Properties.Resources.resources
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop.csproj.GenerateResource.cache
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop.exe
+C:\Users\user\Desktop\BioAI\Soft\BioAI_Desktop\obj\Release\BioAI_Desktop.pdb
